@@ -99,3 +99,8 @@ body{
    color: white;
    font-weight: 700;
 }
+
+.register-message{
+background-color: green!important;
+display: block !important;
+}

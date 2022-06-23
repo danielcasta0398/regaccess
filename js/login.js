@@ -2,6 +2,14 @@ const userObject = {
     users:[]
 }
 
+let UserObjLS= localStorage.getItem("UserObject");
+let UserJSONParse=JSON.parse(UserObjLS);
+
+if (!UserObjLS)
+{
+    localStorage.setItem("UserObject", JSON.stringify(userObject));
+}
+
 
 const login = (e) =>{
     e.preventDefault()
@@ -17,7 +25,7 @@ const login = (e) =>{
 
 const register = () =>{
     document.querySelector('.login-form').innerHTML = `  
-      <div class="register-form">       
+      <div class="register-form">
         <h3>Registrate</h3>
         
         <div>
@@ -72,8 +80,21 @@ const registerInfo = (e) => {
     user.email = email
     user.userId = id
 
-    userObject.users.push(user)
-    console.log(user);
+    UserJSONParse.users.push(user);
+   localStorage.setItem("UserObject", JSON.stringify(UserJSONParse))
+   document.getElementById('name').value = ""
+   document.getElementById('lastName').value = ""
+   document.getElementById('email').value = ""
+
+   let divIdMessage= document.createElement("div")
+       divIdMessage.setAttribute("class", "register-message")
+       divIdMessage.innerText= `Su ID es: ${id}`
+    
+   let divReg= document.querySelector(".register-form"); 
+   divReg.insertAdjacentElement("beforebegin", divIdMessage) 
+   console.log(divReg)
+   
+
 }
 
 //Esta funcion nos da un alert de que no encuentra informacion
@@ -84,4 +105,5 @@ const alertLogin = () => {
         document.querySelector('.message-login').style.display = '';
     }, 3000 )
 }
+
 

@@ -9,6 +9,7 @@ let UserJSONParse=JSON.parse(UserObjLS);
 if (!UserObjLS)
 {
     localStorage.setItem("UserObject", JSON.stringify(userObject));
+    window.location.reload()
 }
 
 
@@ -29,11 +30,15 @@ const login = (e) =>{
     }
     else if (userIdLength < 6) //Validamos que el total de digitos sea 6
     {
-        let messageLoginRequired= document.getElementById('userId').parentElement
+        
+       if (!document.querySelector('.message-login')) 
+       {     
+       let messageLoginRequired= document.getElementById('userId').parentElement
         messageLoginRequired.insertAdjacentHTML('beforebegin', '<div class="message-login">El ID debe contener 6 digitos. Ej: AB1234</div>')
         setTimeout ( () => {
             document.querySelector('.message-login').remove();}
             ,4000)
+       }
     }
 
     else 
@@ -174,6 +179,7 @@ const registerInfo = (e) => {
         user.userId = id.toUpperCase()
 
         UserJSONParse.users.push(user);
+        console.log(UserJSONParse)
         localStorage.setItem("UserObject", JSON.stringify(UserJSONParse))
         document.getElementById('name').value = ""
         document.getElementById('lastName').value = ""

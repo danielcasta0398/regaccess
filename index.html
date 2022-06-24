@@ -10,16 +10,23 @@
 </head>
 <body>
     
-    <form action="" class="login-form">
-        <div class="message-login">Datos incorrectos o no esta registrado</div>
+    <form class="login-form">
+        
         <h3>Iniciar Sesion</h3>
-        <div>
+        <div class="login-div">
             <input 
                 type="text"
                 id="userId"
+                required
+                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'')"
+                onkeypress="13"
+                minlength="6"
+                maxlength="6"
+                placeholder="Ej: AB1234"
             >
+            
         </div>        
-        <button onclick="login(event)">Entrar</button>  
+        <button class="loginButton" onclick="login(event)">Entrar</button>  
         <p>¿Aún no te has registrado?<a onclick="register()">Regístrate aquí</a></p>      
     </form>
     

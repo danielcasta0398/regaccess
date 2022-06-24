@@ -53,13 +53,15 @@ const login = (e) =>{
 
         if (arrayUserID.indexOf(userId) == -1) // Si el ID ingresado no coincide, arroja mensaje.
         {
-            {    
+            if (!document.querySelector('.message-login')) 
+            {        
                 let messageLoginRequired= document.getElementById('userId').parentElement
                 messageLoginRequired.insertAdjacentHTML('beforebegin', '<div class="message-login">El ID no existe</div>')
                 setTimeout ( () => {
                     document.querySelector('.message-login').remove();}
                     ,4000)
-                }
+                    
+            }
         }
 
         else //Si ID coincide con algun indice de LS, redirecciona a accesControl.html (Inicia la Sesión)
